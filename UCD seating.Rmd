@@ -1,7 +1,7 @@
 ---
 title: "Student Sit In"
-author: "your name here"
-date: "10/26/2019"
+author: "Ariana Rodriguez"
+date: "28 October 2019"
 output: 
   html_document:
     toc: true
@@ -22,7 +22,7 @@ Students at UCD- is there a relation between where one sits and one's major?
 
 <!-- where is the data found?  Is this an experiment or an observational study?  !-->
 
-Data from this study came from... 
+Data from this study came from UC Davis and it is an obseravtional study.  
 
 
 
@@ -37,7 +37,7 @@ $H_A$: where one sits in class and one's major are related
 
 <!-- Get the data: !-->
 
-names of the data in the data frame
+names of the data in the data frame are seat and major
 
 ```{r echo=FALSE}
 UCDdataframe = data.frame(seat=ucdavis1$Seat, major=ucdavis1$class, data=ucdavis1)
@@ -49,42 +49,41 @@ names(UCDdataframe)
 what are the variable types, and indicate gaphical, numerical, and inferential methods appropriate
 for this question  !--> 
 
+The variables in this analysis are both categorical therefore bar graphs and tables are used for the data and a chisquare test is used for the inferential results. 
 
 ## Data summary
 
 **Graphical summary**
-put the graphic description of the data here
 
 ```{r}
-
+barchartGC(~seat+major, data=UCDdataframe, main='Seat & Major' , type='Percent', xlab='Seat')
 ```
 
-Explain what the graph shows
+This graph shows that students with a LibArts major tend to sit more towards the front of a class rather than the back, and students with a NonLib major sit relatively anywhere. 
 
 
 **Numerical summary**
-put numerical summary here
 
 ```{r}
-
+tab1 = xtabs(~seat+major, data=UCDdataframe)
+rowPerc(tab1)
 ```
 
-Explain what the numeric summary says
+The numerical summary says that students with a LibArts major tend to sit more towards the front of a class rather than the back, and students with a NonLib major sit relatively anywhere. 
 
 ## Inferential Results
-put the inferential test for the the null hypothesis here
 
 ```{r}
-
+chisqtestGC(tab1)
 ```
 
-what is the p-value?
+The p-value of the chisquare test is 0.2173
 
 ## Results and conclusions
 
 <!-- explain-- is there evidence that certain majors tend to sit in particular areas of the class?  Can the results of this test be generalized to all majors in all universities? !-->
 
-explain the result, can the result be generalized?
+The p-value for the chisquare test is 0.2173 which is greater than 0.05 therefore we fai to reject the null hypthesis that there is a relation between one's major and where one sits in class. 
 
 <!--
 push results to your github account, turn in the URL
